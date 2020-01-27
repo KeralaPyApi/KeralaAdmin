@@ -12,5 +12,5 @@ import keralabot
 
 from keralabot import types
 
-bot = keralabot.Bot(token)
+bot = keralabot.bot(token)
 
