@@ -1,10 +1,10 @@
 #####################################
 import os
 
-token = ''
+token = os.environ.get("TOKEN", "")
 
-admin_id = 12345678
-admin_name = ''
+admin_id = int(os.environ.get("ADMIN_ID", ""))
+admin_name = os.environ.get("ADMIN_USERNAME", "")
 
 #####################################
 
