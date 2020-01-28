@@ -2,7 +2,7 @@ import keralabot
 import logging
 
 logger = keralabot.logger
-Keralabot.logger.setLevel(logging.DEBUG) # Outputs debug messages to console.
+keralabot.logger.setLevel(logging.DEBUG) # Outputs debug messages to console.
 
 from config import *
 
