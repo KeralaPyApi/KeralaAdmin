@@ -2,6 +2,7 @@ from datetime import datetime
 
 from config import *
 
+@bot.message_handler(commands=['ping'])
 def ping(message):
     if message.text == "/ping" or message.text == "!ping":
         first = datetime.now()
