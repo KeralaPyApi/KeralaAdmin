@@ -1,3 +1,4 @@
+import keralabot
 from config import *
 
 @bot.message_handler(commands=['id'])
