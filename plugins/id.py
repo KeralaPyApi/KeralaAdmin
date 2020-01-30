@@ -3,10 +3,7 @@ from config import *
 @bot.message_handler(commands=['id'])
 def get_id(message):
     if message.chat.type == "private":
-        if message.from.username != nil:
-            username = message.from.username
-        else:
-            username = ''
+        username = message.from.username
         bot.reply_to(message.chat.id, '''*Information of the user*
 
 *Name :* `{}`
