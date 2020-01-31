@@ -27,4 +27,4 @@ def start(message):
 def callback_query(call):
     if call.data == "help":
         bot.answer_callback_query(call.id, "On beta mode now")
-        bot.send_message(call.message.chat.id, "On beta mode now")
+        bot.edit_message_text("On beta mode now", call.id, call.message_id)
