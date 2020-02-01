@@ -11,7 +11,7 @@ def markup():
     markup = InlineKeyboardMarkup()
     markup.row_width = 2
     markup.add(InlineKeyboardButton("Help", callback_data="help"),
-                               InlineKeyboardButton("Add me to group", url="t.me/Keralasbots"))
+                               InlineKeyboardButton("Add me to group", url="t.me/{}?startgroup=new".format(botname)))
     return markup
 
 @bot.message_handler(commands=['start'])
