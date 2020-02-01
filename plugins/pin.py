@@ -48,6 +48,7 @@ def is_admin(chat_id, user_id, reply_id=None):
 
 @bot.message_handler(commands=['pin'])
 def pin(message):
+    chat_id = message.chat.id
     cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (int(chat_id),))
     adms = cursor.fetchone()[0]
     if adms:
