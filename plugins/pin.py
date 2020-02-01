@@ -48,11 +48,13 @@ def is_admin(chat_id, user_id, reply_id=None):
 
 @bot.message_handler(commands=['pin'])
 def pin(message):
-    reply_id = None
-    adm = is_admin(message.chat.id, message.from_user.id, reply_id)
+    cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (int(chat_id),))
+    adms = cursor.fetchone()[0]
+    if adms:
+        cached_admins = json.loads(adms)    
     if message.chat.type == "private":
         bot.reply_to(message, "This command is meant to be used in Groups")
     if message.reply_to_message == None:
         bot.reply_to(message, "Reply to a message to be pinned")
-    if message.reply_to_message.id == adm:
+    if message.reply_to_message.id == cached_admins:
         bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
