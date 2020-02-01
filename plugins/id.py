@@ -10,4 +10,4 @@ from config import *
 @bot.message_handler(commands=['id'])
 def tg_id(message):
     if message.chat.type == "private":
-        bot.reply_to(message, "*Information of user*\n\n*Name* : `{}`\n*ID *: `{}`".format(message.from_user.first_name, message.from_user.id)) 
+        bot.reply_to(message, "*Information of user*\n\n*Name* : `{}`\n*ID *: `{}`".format(message.from_user.first_name, message.from_user.id) parse_mode="Markdown") 
