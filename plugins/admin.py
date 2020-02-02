@@ -24,9 +24,6 @@ def ban(message):
         bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
         bot.reply_to(message, "{} banned {}".format(message.from_user.first_name, message.reply_to_message.from_user.first_name))
         return
-    if members.status != "administrator" or members.status != "creator":
-        bot.reply_to(message, "Who are you Non - Admin to command me")
-        return
 
 @bot.message_handler(commands=['unban'])
 def unban(message):
@@ -47,7 +44,4 @@ def unban(message):
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
         bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
         bot.reply_to(message, "Now that user can join this chat")
-        return
-    if members.status != "administrator" or members.status != "creator":
-        bot.reply_to(message, "Who are you Non - Admin to command me")
         return
