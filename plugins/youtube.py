@@ -8,7 +8,7 @@ from config import *
 def search(query):
     url_base = "https://www.youtube.com/results"
     url_yt = "https://www.youtube.com"
-    with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession() as session:
         r = session.get(url_base, params=dict(q=query))
         page = r.text()
     soup = BeautifulSoup(page, "html.parser")
