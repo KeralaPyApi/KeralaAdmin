@@ -34,7 +34,7 @@ def unban(message):
     if message.chat.type == "private":
         bot.reply_to(message, "This command is meant to be used in Groups")
     if message.reply_to_message == None and members.status == "administrator" or members.status == "creator":
-        unban_user = message.text[5:]
+        unban_user = message.text[7:]
         if unban_user == None:
             bot.reply_to(message, "Reply to a message or send me the ID of the user")
         else:
