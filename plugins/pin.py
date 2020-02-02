@@ -52,7 +52,7 @@ def pin(message):
     adms = bot.get_chat_administrators(chat_id)
     adm_id = []
     for ids in adms:
-        adm_id.append(ids['user']['id'])
+        adm_id.append(ids.user.id)
     cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time()) + 1200)), chat_id))
     conn.commit()
     cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (int(chat_id),))
