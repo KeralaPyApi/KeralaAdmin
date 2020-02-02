@@ -45,7 +45,7 @@ def unban(message):
         else:
             bot.unban_chat_member(message.chat.id, unban_user)
             bot.reply_to(message, "Now that user can join this chat")
-            bot.delete_message(message.chat.id, message.from_user.message_id)      #Added delete some command for misuse of that
+            bot.delete_message(message.chat.id, message.message_id)      #Added delete some command for misuse of that
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
         bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
         bot.reply_to(message, "Now that user can join this chat")
