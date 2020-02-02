@@ -20,5 +20,6 @@ def pin(message):
         bot.reply_to(message, "Reply to a message to be pinned")
     if members.status == "administrator" or members.status == "creator":
         bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
+        bot.delete_message(message.chat.id, message.from_user.message_id)      #Added delete some command for misuse of that
     if members.status != "administrator":
         bot.reply_to(message, "You need to be an Admin to pin the message")
