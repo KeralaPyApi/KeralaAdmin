@@ -18,12 +18,12 @@ def ban(message):
         else:
             bot.kick_chat_member(message.chat.id, ban_user)
             bot.reply_to(message, "{} banned {}".format(message.from_user.first_name, members.first_name))
-    else:
+    if members.status != "administrator" or members.status != "creator":
         bot.reply_to(message, "Who are you Non - Admin to command me")
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
         bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
         bot.reply_to(message, "{} banned {}".format(message.from_user.first_name, message.reply_to_message.from_user.first_name))
-    else:
+    if members.status != "administrator" or members.status != "creator":
         bot.reply_to(message, "Who are you Non - Admin to command me")
 
 @bot.message_handler(commands=['unban'])
@@ -40,11 +40,11 @@ def unban(message):
         else:
             bot.unban_chat_member(message.chat.id, unban_user)
             bot.reply_to(message, "Now that user can join this chat")
-    else:
+    if members.status != "administrator" or members.status != "creator":
         bot.reply_to(message, "Who are you Non - Admin to command me")
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
         bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
         bot.reply_to(message, "Now that user can join this chat")
-    else:
+    if members.status != "administrator" or members.status != "creator":
         bot.reply_to(message, "Who are you Non - Admin to command me")
 
