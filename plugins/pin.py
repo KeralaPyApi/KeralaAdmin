@@ -49,13 +49,19 @@ def is_admin(chat_id, user_id, reply_id=None):
 @bot.message_handler(commands=['pin'])
 def pin(message):
     chat_id = message.chat.id
+    adms = bot.get_chat_administrators(chat_id)
+    adm_id = []
+    for ids in adms:
+        adm_id.append(ids['user']['id'])
+    cursor.execute('UPDATE chats SET cached_admins = ? WHERE chat_id = ?', (json.dumps(dict(admins_list=adm_id, expires=int(time.time()) + 1200)), chat_id))
+    conn.commit()
     cursor.execute('SELECT cached_admins FROM chats WHERE chat_id = ?', (int(chat_id),))
-    adms = cursor.fetchone()[0]
-    if adms:
+    admn = cursor.fetchone()[0]
+    if admm:
         cached_admins = json.loads(adms)    
     if message.chat.type == "private":
         bot.reply_to(message, "This command is meant to be used in Groups")
     if message.reply_to_message == None:
         bot.reply_to(message, "Reply to a message to be pinned")
-    if message.reply_to_message.id == cached_admins:
+    if message.reply_to_message.id in cached_admins:
         bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
