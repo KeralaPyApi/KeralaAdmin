@@ -17,5 +17,10 @@ def ban(message):
             bot.reply_to(message, "Reply to a message or send me the ID of the user")
         else:
             bot.kick_chat_member(message.chat.id, ban_user)
+    else:
+        bot.reply_to(message, "Who are you Non - Admin to command me")
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
         bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    else:
+        bot.reply_to(message, "Who are you Non - Admin to command me")
+
