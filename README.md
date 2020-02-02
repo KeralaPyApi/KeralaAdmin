@@ -6,8 +6,8 @@ An Open source project on the New Python Api
 
 **Contributions are welcome.**
 
-`import keralabot
+```import keralabot
 import logging
-`
+```
 
 Credits 💖 [KeralaPyApi](t.me/Keralasbots)
