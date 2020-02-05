@@ -1,1 +1,1 @@
-https://github.com/KeralaPyApi/KeralaPyApi/development.zip
+https://github.com/KeralaPyApi/KeralaPyApi/archive/development.zip
