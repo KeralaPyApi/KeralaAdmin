@@ -1,3 +1,1 @@
-KeralaPyApi>=2.0.2020
-bs4
-aiohttp
+https://github.com/KeralaPyApi/KeralaPyApi/development.zip
