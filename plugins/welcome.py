@@ -5,7 +5,7 @@ import logging
 
 from config import *
 
-@bot.message_handler(filters.types.Message.new_chat_member)
+@bot.message_handler(types.Message.new_chat_member)
 def welcome(message):
     new_members = types.Message.new_chat_member
     for nm in new_members:
