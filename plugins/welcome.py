@@ -9,4 +9,4 @@ from config import *
 def welcome(message):
     new_members = types.Message.new_chat_member
     for nm in new_members:
-        bot.reply_to(message, "Hello {first} welcome.".format(nm.first_name)
+        bot.reply_to(message, "Hello {first} welcome.".format(nm.first_name))
