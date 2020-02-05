@@ -18,13 +18,13 @@ def ban(message):
         if ban_user == None:
             bot.reply_to(message, "Reply to a message or send me the ID of the user")
         else:
-            bot.send_sticker(message.chat.id, "CAADBAADJQEAAu0egAUl-J3zbwtTgBYE")
             bot.kick_chat_member(message.chat.id, ban_user)
+            bot.send_sticker(message.chat.id, "CAADBAADJQEAAu0egAUl-J3zbwtTgBYE")
             bot.reply_to(message, "{} banned {}".format(message.from_user.first_name, members.first_name))
             bot.delete_message(message.chat.id, message.from_user.message_id)      #Added delete some command for misuse of that
     if message.reply_to_message != None and members.status == "administrator" or members.status == "creator":
-        bot.send_sticker(message.chat.id, "CAADBAADJQEAAu0egAUl-J3zbwtTgBYE")
         bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+        bot.send_sticker(message.chat.id, "CAADBAADJQEAAu0egAUl-J3zbwtTgBYE")
         bot.reply_to(message, "{} banned {}".format(message.from_user.first_name, message.reply_to_message.from_user.first_name))
         bot.delete_message(message.chat.id, message.message_id)      #Added delete some command for misuse of that
         return
