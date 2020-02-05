@@ -7,6 +7,5 @@ from config import *
 
 @bot.message_handler(func=lambda message: True)
 def welcome(message):
-    new_members = message.chat.new_chat_member
-    for nm in new_members:
-        bot.reply_to(message, "Hello {first} welcome.".format(nm.first_name))
+    if message.new_chat_member != None:
+        bot.reply_to(message, "Hello {first} welcome.".format(message.new_chat_member.first_name))
