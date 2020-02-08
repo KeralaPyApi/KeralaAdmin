@@ -41,3 +41,12 @@ def welcome(message):
     else:
         welcome = "Hello {} welcome.".format(message.from_user.first_name)
     bot.reply_to(message, welcome)
+
+@bot.message_handler(commands=['setwelcome'])
+def setwelcome(message):
+    chat_id = message.chat.id
+    members = bot.get_chat_member(chat_id, user_id)
+    if members.status == "administrator" or members.status == "creator":
+        welcome_message = message.text[12:]
+        set_welcome(chat_id, welcome_message)
+        bot.reply_to(chat_id, Successfully set welcome message for *{}*".format(message.chat.title), parse_mode="Markdown")
