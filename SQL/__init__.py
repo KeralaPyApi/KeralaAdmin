@@ -1,8 +1,9 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-DB = 'bot.db'
+DB = os.environ.get("DATABASE_URL", "")
 
 def start() -> scoped_session:
     engine = create_engine(DB, client_encoding="utf8")
