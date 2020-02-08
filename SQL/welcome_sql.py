@@ -1,10 +1,21 @@
 import threading
-
+from enum import IntEnum, unique
 from sqlalchemy import Column, String, Boolean, UnicodeText, Integer, BigInteger
 from SQL.__init__ import SESSION, BASE
 
 DEFAULT_WELCOME = "Hey {first}, how are you?"
 DEFAULT_GOODBYE = "Nice knowing ya!"
+
+@unique
+class Types(IntEnum):
+    TEXT = 0
+    BUTTON_TEXT = 1
+    STICKER = 2
+    DOCUMENT = 3
+    PHOTO = 4
+    AUDIO = 5
+    VOICE = 6
+    VIDEO = 7
 
 
 class Welcome(BASE):
