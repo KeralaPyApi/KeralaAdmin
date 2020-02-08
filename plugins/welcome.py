@@ -34,7 +34,7 @@ def welcome(message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
-    cust_welcome, welc_type = sql.get_welc_pref(chat_id)
+    cust_welcome = sql.get_welc_pref(chat_id)
     if cust_welcome is not None:
         cust_welcome = cust_welcome.replace('{id}', str(chat_id))
         cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
