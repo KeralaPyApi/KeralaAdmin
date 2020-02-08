@@ -1,7 +1,7 @@
 import threading
 
 from sqlalchemy import Column, String, Boolean, UnicodeText, Integer, BigInteger
-from SQL.sql import SESSION, BASE
+from SQL.__init__ import SESSION, BASE
 
 DEFAULT_WELCOME = "Hey {first}, how are you?"
 DEFAULT_GOODBYE = "Nice knowing ya!"
