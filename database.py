@@ -1,6 +1,7 @@
 #Thanks AmanoTeam for the database model
 
 import sqlite3
+import keralabot
 
 conn = sqlite3.connect('bot.db')   #Temporary db 
 
