@@ -2,7 +2,7 @@
 
 An Open source project on the New Python Api
 
-[KeralaPyApi](github.com/KeralaPyApi/Keralabot)
+[KeralaPyApi](https://pypi.org/project/KeralaPyApi/)
 
 **Contributions are welcome.**
 
