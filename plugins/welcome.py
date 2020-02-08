@@ -5,6 +5,7 @@ import logging
 
 from config import *
 from database import *
+import SQL.welcome_sql as sql
 
 def markdown(text):
     text = text.replace(']', '\]')
@@ -33,13 +34,13 @@ def welcome(message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
-    welcome = get_welcome(chat_id)
-    if welcome is not None:
-        welcome = welcome.replace('{id}', str(chat_id))
-        welcome = welcome.replace('{title}', markdown(chat_title))
-        welcome = welcome.replace('{name}', markdown(first_name))
+    cust_welcome, welc_type = sql.get_welc_pref(chat_id)
+    if cust_welcome is not None:
+        cust_welcome = cust_welcome.replace('{id}', str(chat_id))
+        cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
+        cust_welcome = cust_welcome.replace('{name}', markdown(first_name))
     else:
-        welcome = "Hello {} welcome.".format(message.from_user.first_name)
+        cust_welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
     bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['setwelcome'])
