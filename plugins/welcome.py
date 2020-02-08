@@ -35,9 +35,9 @@ def welcome(message):
     first_name = message.new_chat_member.first_name
     welcome = get_welcome(chat_id)
     if welcome is not None:
-        welcome = welcome[0].replace('{id}', str(chat_id))
-        welcome = welcome.replace('{title}', escape_markdown(chat_title))
-        welcome = welcome.replace('{name}', escape_markdown(first_name))
+        welcome = welcome.replace('{id}', str(chat_id))
+        welcome = welcome.replace('{title}', markdown(chat_title))
+        welcome = welcome.replace('{name}', markdown(first_name))
     else:
         welcome = "Hello {} welcome.".format(message.from_user.first_name)
     bot.reply_to(message, welcome)
@@ -45,6 +45,7 @@ def welcome(message):
 @bot.message_handler(commands=['setwelcome'])
 def setwelcome(message):
     chat_id = message.chat.id
+    user_id = message.from_user.id
     members = bot.get_chat_member(chat_id, user_id)
     if members.status == "administrator" or members.status == "creator":
         welcome_message = message.text[12:]
