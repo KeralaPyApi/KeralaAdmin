@@ -11,4 +11,4 @@ import keralabot
 import logging
 ```
 
-Credits 💖 [KeralaPyApi](t.me/Keralasbots)
+Credits 💖 [KeralaPyApi](http://t.me/Keralasbots)
