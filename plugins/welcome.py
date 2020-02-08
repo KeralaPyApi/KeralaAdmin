@@ -38,7 +38,7 @@ def welcome(message):
     if cust_welcome is not None:
         cust_welcome = cust_welcome
     else:
-        cust_welcome = sql.DEFAULT_WELCOME.format({first}=message.from_user.first_name)
+        cust_welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
     bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['setwelcome'])
