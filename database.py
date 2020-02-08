@@ -62,7 +62,6 @@ def del_restarted():
     cursor.execute('DELETE FROM was_restarted_on')
     conn.commit()
 
-@bot.message_handler(content_types=['text'])
 def add_chat(chat_type, chat_id, chat_lang='en'):
     if chat_type == 'private':
         if not user_exists(chat_id):
