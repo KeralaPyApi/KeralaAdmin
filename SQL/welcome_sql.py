@@ -33,10 +33,10 @@ def get_welc_pref(chat_id):
     welc = SESSION.query(Welcome).get(str(chat_id))
     SESSION.close()
     if welc:
-        return welc.custom_welcome, welc.welcome_type
+        return welc.custom_welcome
     else:
         # Welcome by default.
-        return True, DEFAULT_WELCOME, Types.TEXT
+        return True, DEFAULT_WELCOME
 
 def set_custom_welcome(chat_id, custom_welcome, welcome_type):
 
