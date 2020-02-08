@@ -36,11 +36,9 @@ def welcome(message):
     first_name = message.new_chat_member.first_name
     cust_welcome = sql.get_welc_pref(chat_id)
     if cust_welcome is not None:
-        cust_welcome = cust_welcome.replace('{id}', str(chat_id))
-        cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
-        cust_welcome = cust_welcome.replace('{name}', markdown(first_name))
+        cust_welcome = cust_welcome
     else:
-        cust_welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
+        cust_welcome = sql.DEFAULT_WELCOME.format({first}=message.from_user.first_name)
     bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['setwelcome'])
