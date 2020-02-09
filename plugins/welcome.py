@@ -35,11 +35,11 @@ def welcome(message):
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
     cust_welcome = sql.get_welc_pref(chat_id)
-    if cust_welcome is not None:
-        cust_welcome = cust_welcome
+    if cust_welcome == True:
+        welcome = cust_welcome
     else:
-        cust_welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
-    bot.reply_to(message, cust_welcome)
+        welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
+    bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['setwelcome'])
 def setwelcome(message):
@@ -48,5 +48,5 @@ def setwelcome(message):
     members = bot.get_chat_member(chat_id, user_id)
     if members.status == "administrator" or members.status == "creator":
         welcome_message = message.text[12:]
-        sql.set_custom_welcome(chat_id, welcome_message, sql.Types.TEXT.value)
+        sql.set_custom_welcome(chat_id, welcome_message, sql.Types.TEXT)
         bot.reply_to(chat_id, "Successfully set welcome message for *{}*".format(message.chat.title), parse_mode="Markdown")
