@@ -72,14 +72,14 @@ def welcome(message):
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
     full_name = "{} {}".format(message.new_chat_member.first_name, message.new_chat_member.last_name)
-    mention = "[{}](http://t.me/user?id={})".format(message.new_chat_member.first_name, message.from_user.id)
+    #mention = "[{}](http://t.me/user?id={})".format(message.new_chat_member.first_name, message.from_user.id)
     members = bot.get_chat_members_count(chat_id)
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
     #res = valid_format.format(first=markdown(first_name)) 
     cust_welcome = cust_welcome.replace('{name}', markdown(first_name))
     cust_welcome = cust_welcome.replace('{fullname}', markdown(full_name))
-    cust_welcome = cust_welcome.replace('{mention}', markdown(mention))
+    #cust_welcome = cust_welcome.replace('{mention}', markdown(mention))
     cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
     if cust_welcome != True:
         welcome = cust_welcome
@@ -93,6 +93,9 @@ def setwelcome(message):
     user_id = message.from_user.id
     members = bot.get_chat_member(chat_id, user_id)
     if members.status == "administrator" or members.status == "creator":
-        custom_welcome = message.text[31:]
+        if botname in message.text:
+            custom_welcome = message.text[31:]
+        else:
+            custom_welcome = message.text[12:]
         sql.set_custom_welcome(chat_id, custom_welcome, sql.Types.TEXT)
         bot.reply_to(message, "Successfully set welcome message for *{}*".format(message.chat.title), parse_mode="Markdown")
