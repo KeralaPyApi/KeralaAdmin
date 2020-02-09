@@ -16,6 +16,42 @@ def markdown(text):
 
     return text
 
+def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
+    new_text = ""
+    idx = 0
+    while idx < len(text):
+        if text[idx] == "{":
+            if idx + 1 < len(text) and text[idx + 1] == "{":
+                idx += 2
+                new_text += "{{{{"
+                continue
+            else:
+                success = False
+                for v in valids:
+                    if text[idx:].startswith('{' + v + '}'):
+                        success = True
+                        break
+                if success:
+                    new_text += text[idx: idx + len(v) + 2]
+                    idx += len(v) + 2
+                    continue
+                else:
+                    new_text += "{{"
+
+        elif text[idx] == "}":
+            if idx + 1 < len(text) and text[idx + 1] == "}":
+                idx += 2
+                new_text += "}}}}"
+                continue
+            else:
+                new_text += "}}"
+
+        else:
+            new_text += text[idx]
+        idx += 1
+
+    return new_text
+
 def get_welcome(chat_id):
     cursor.execute('SELECT welcome FROM chats WHERE chat_id = (?)', (chat_id,))
     try:
@@ -35,10 +71,12 @@ def welcome(message):
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
     cust_welcome = sql.get_welc_pref(chat_id)
+    valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
+    res = valid_format.format(first=markdown(first_name))                      
     if cust_welcome == True:
         welcome = cust_welcome
     else:
-        welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
+        welcome = sql.DEFAULT_WELCOME.format(first=message.from_user.first_name)
     bot.reply_to(message, welcome)
 
 @bot.message_handler(commands=['setwelcome'])
