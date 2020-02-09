@@ -10,7 +10,6 @@ import SQL.welcome_sql as sql
 #VALID_WELCOME_FORMATTERS = ['first']
 
 def markdown(text):
-    text = text.replace(']', '\]')
     text = text.replace('[', '\[')
     text = text.replace('_', '\_')
     text = text.replace('*', '\*')
@@ -94,9 +93,6 @@ def setwelcome(message):
     user_id = message.from_user.id
     members = bot.get_chat_member(chat_id, user_id)
     if members.status == "administrator" or members.status == "creator":
-        if message.text == "/setwelcome" + botname:
-            custom_welcome = message.text[31:]
-        else:
-            custom_welcome = message.text[12:]
+        custom_welcome = message.text[31:]
         sql.set_custom_welcome(chat_id, custom_welcome, sql.Types.TEXT)
         bot.reply_to(message, "Successfully set welcome message for *{}*".format(message.chat.title), parse_mode="Markdown")
