@@ -7,6 +7,8 @@ from config import *
 from database import *
 import SQL.welcome_sql as sql
 
+VALID_WELCOME_FORMATTERS = ['first']
+
 def markdown(text):
     text = text.replace(']', '\]')
     text = text.replace('[', '\[')
