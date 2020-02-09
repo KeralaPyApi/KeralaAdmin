@@ -1,5 +1,10 @@
 import keralabot
 import logging
+
+logger = keralabot.logger
+keralabot.logger.setLevel(logging.DEBUG) # Outputs debug messages to console.
+
+from config import *
 from googletrans import Translator
 
 @bot.message_handler(commands=['tr'])
