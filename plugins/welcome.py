@@ -75,7 +75,7 @@ def welcome(message):
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
     #res = valid_format.format(first=markdown(first_name))                      
-    if cust_welcome == True:
+    if cust_welcome != True:
         welcome = cust_welcome
     else:
         welcome = sql.DEFAULT_WELCOME.format(first=message.from_user.first_name)
