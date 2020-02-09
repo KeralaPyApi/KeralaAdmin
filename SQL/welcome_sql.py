@@ -43,13 +43,9 @@ def set_custom_welcome(chat_id, custom_welcome, welcome_type):
     with INSERTION_LOCK:
         welcome_settings = SESSION.query(Welcome).get(str(chat_id))
         
-        if custom_welcome:
-            welcome_settings.custom_welcome = custom_welcome
-            welcome_settings.welcome_type = welcome_type.value
+        welcome_settings.custom_welcome = custom_welcome
+        welcome_settings.welcome_type = welcome_type.value
 
-        else:
-            welcome_settings.custom_welcome = DEFAULT_WELCOME
-            welcome_settings.welcome_type = Types.TEXT.value
         SESSION.add(welcome_settings)
 
         SESSION.commit()
