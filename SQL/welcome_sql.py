@@ -41,11 +41,14 @@ def get_welc_pref(chat_id):
 def set_custom_welcome(chat_id, custom_welcome, welcome_type):
 
     with INSERTION_LOCK:
+        prev_welcome = SESSION.query(Welcome).filter(Welcome.chat_id == str(chat_id)).all()
+            for prev in prev_welcome:
+                SESSION.delete(prev)
         welcome_settings = SESSION.query(Welcome).get(str(chat_id))
         welcome_settings = Welcome(str(chat_id))
         welcome_settings.custom_welcome = custom_welcome
         welcome_settings.welcome_type = welcome_type.value
 
-        SESSION.update(welcome_settings)
+        SESSION.add(welcome_settings)
 
         SESSION.commit()
