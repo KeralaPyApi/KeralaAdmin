@@ -46,6 +46,6 @@ def set_custom_welcome(chat_id, custom_welcome, welcome_type):
         welcome_settings.custom_welcome = custom_welcome
         welcome_settings.welcome_type = welcome_type.value
 
-        SESSION.add(welcome_settings)
+        SESSION.set(welcome_settings)
 
         SESSION.commit()
