@@ -61,7 +61,7 @@ def escape_invalid_curly_brackets(text, valids):
 #    except IndexError:
 #        return None
 #
-$
+#
 #def set_welcome(chat_id, welcome):
 #    cursor.execute('UPDATE chats SET welcome = ? WHERE chat_id = ?', (welcome, chat_id))
 #    conn.commit()
