@@ -54,17 +54,17 @@ def escape_invalid_curly_brackets(text, valids):
 
     return new_text
 
-def get_welcome(chat_id):
-    cursor.execute('SELECT welcome FROM chats WHERE chat_id = (?)', (chat_id,))
-    try:
-        return cursor.fetchone()
-    except IndexError:
-        return None
-
-
-def set_welcome(chat_id, welcome):
-    cursor.execute('UPDATE chats SET welcome = ? WHERE chat_id = ?', (welcome, chat_id))
-    conn.commit()
+#def get_welcome(chat_id):
+#    cursor.execute('SELECT welcome FROM chats WHERE chat_id = (?)', (chat_id,))
+#    try:
+#        return cursor.fetchone()
+#    except IndexError:
+#        return None
+#
+$
+#def set_welcome(chat_id, welcome):
+#    cursor.execute('UPDATE chats SET welcome = ? WHERE chat_id = ?', (welcome, chat_id))
+#    conn.commit()
 
 
 @bot.message_handler(content_types=['new_chat_members'])
@@ -74,12 +74,15 @@ def welcome(message):
     first_name = message.new_chat_member.first_name
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
-    #res = valid_format.format(first=markdown(first_name))                      
+    #res = valid_format.format(first=markdown(first_name)) 
+    if {name} in cust_welcome or {title} in cust_welcome:
+        cust_welcome = cust_welcome.replace('{name}', markdown(first_name))
+        cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
     if cust_welcome != True:
         welcome = cust_welcome
     else:
         welcome = sql.DEFAULT_WELCOME.format(first=message.from_user.first_name)
-    bot.reply_to(message, welcome)
+    bot.reply_to(message, welcome, parse_mode='Markdown')
 
 @bot.message_handler(commands=['setwelcome'])
 def setwelcome(message):
