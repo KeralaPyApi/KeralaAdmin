@@ -16,7 +16,7 @@ def markdown(text):
 
     return text
 
-def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
+def escape_invalid_curly_brackets(text, valids):
     new_text = ""
     idx = 0
     while idx < len(text):
