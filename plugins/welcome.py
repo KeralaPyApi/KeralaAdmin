@@ -39,7 +39,7 @@ def welcome(message):
         cust_welcome = cust_welcome
     else:
         cust_welcome = sql.DEFAULT_WELCOME.format(message.from_user.first_name)
-    bot.reply_to(message, welcome)
+    bot.reply_to(message, cust_welcome)
 
 @bot.message_handler(commands=['setwelcome'])
 def setwelcome(message):
