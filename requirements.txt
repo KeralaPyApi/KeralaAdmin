@@ -2,3 +2,4 @@ KeralaPyApi>=2.3.2020
 sqlalchemy
 psycopg2-binary
 feedparser
+googletrans
