@@ -11,7 +11,9 @@ from googletrans import Translator
 def translate(message):
     to_translate_text = message.reply_to_message.text
     lang = message.text[4:]
-    if lang == None:
+    if message.text[4:] != None:
+        lang = message.text[4:]
+    else:
         lang = "en"
     translator = Translator()
     try:
