@@ -21,6 +21,12 @@ def help_markup():
     help_markup.add(InlineKeyboardButton("Google Translate", callback_data="translate"), InlineKeyboardButton("Misc", callback_data="misc"))
     return help_markup
 
+def help_back()
+    help_back = InlineKeyboardMarkup
+    help_back.row_width = 1
+    help_back.add(InlineKeyboardButton("🔙 Back", callback_data="help_back")
+    return help_back
+
 @bot.message_handler(commands=['start'])
 def start(message):
     if message.chat.type == "private":
@@ -36,11 +42,14 @@ def callback_query(call):
         bot.answer_callback_query(call.id, "On beta mode now")
         bot.edit_message_text("There are many things that I can do. But now I am in Beta 🚼 mode.\n\nThese are some of my modules.", call.message.chat.id, call.message.message_id, reply_markup=help_markup())
     if call.data == "admin":
-        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id)
+        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "welcome":
-        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id)
+        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "translate":
-        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id)
+        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "misc":
-        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id)
+        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
+    if call.data == "help_back":
+        bot.edit_message_text("There are many things that I can do. But now I am in Beta 🚼 mode.\n\nThese are some of my modules.", call.message.chat.id, call.message.message_id, reply_markup=help_markup())
+
 
