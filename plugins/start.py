@@ -21,7 +21,7 @@ def help_markup():
     help_markup.add(InlineKeyboardButton("Google Translate", callback_data="translate"), InlineKeyboardButton("Misc", callback_data="misc"))
     return help_markup
 
-def help_back()
+def help_back():
     help_back = InlineKeyboardMarkup
     help_back.row_width = 1
     help_back.add(InlineKeyboardButton("🔙 Back", callback_data="help_back")
