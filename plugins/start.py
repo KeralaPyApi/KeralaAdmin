@@ -22,9 +22,9 @@ def help_markup():
     return help_markup
 
 def help_back():
-    help_back = InlineKeyboardMarkup
+    help_back = InlineKeyboardMarkup()
     help_back.row_width = 1
-    help_back.add(InlineKeyboardButton("🔙 Back", callback_data="help_back")
+    help_back.add(InlineKeyboardButton("🔙 Back", callback_data="help_back"))
     return help_back
 
 @bot.message_handler(commands=['start'])
