@@ -53,3 +53,6 @@ def callback_query(call):
         bot.edit_message_text("There are many things that I can do. But now I am in Beta 🚼 mode.\n\nThese are some of my modules.", call.message.chat.id, call.message.message_id, reply_markup=help_markup())
 
 
+@bot.message_handler(commands=['test'])
+def test(message):
+    bot.send_message(message.chat.id, " ~Strike~", parse_mode="Markdown")
