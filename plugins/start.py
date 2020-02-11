@@ -55,4 +55,4 @@ def callback_query(call):
 
 @bot.message_handler(commands=['test'])
 def test(message):
-    bot.send_message(message.chat.id, " ~Strike~", parse_mode="Markdown")
+    bot.send_message(message.chat.id, " ~Strike~", parse_mode="MarkdownV2")
