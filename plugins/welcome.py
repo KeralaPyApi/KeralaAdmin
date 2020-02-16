@@ -11,7 +11,7 @@ from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 #VALID_WELCOME_FORMATTERS = ['first']
 
-def escape_markdown(text):
+def escap_markdown(text):
     text = text.replace('[', '\[')
     text = text.replace('_', '\_')
     text = text.replace('*', '\*')
@@ -78,11 +78,11 @@ def welcome(message):
     members = bot.get_chat_members_count(chat_id)
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
-    #res = valid_format.format(first=markdown(first_name)) 
-    cust_welcome = cust_welcome.replace('{name}', escape_markdown(first_name))
-    cust_welcome = cust_welcome.replace('{fullname}', escape_markdown(full_name))
+    #res = valid_format.format(first=escap_markdown(first_name)) 
+    cust_welcome = cust_welcome.replace('{name}', escap_markdown(first_name))
+    cust_welcome = cust_welcome.replace('{fullname}', escap_markdown(full_name))
     cust_welcome = cust_welcome.replace('{mention}', (mention))
-    cust_welcome = cust_welcome.replace('{title}', escape_markdown(chat_title))
+    cust_welcome = cust_welcome.replace('{title}', escap_markdown(chat_title))
     buttons = sql.get_welc_buttons(chat.id)
     keyb = build_keyboard(buttons)
     keyboard = InlineKeyboardMarkup(keyb)
