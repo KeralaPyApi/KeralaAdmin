@@ -7,6 +7,7 @@ from config import *
 from database import *
 import SQL.welcome_sql as sql
 from funcs import get_welcome_type, build_keyboard
+from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 #VALID_WELCOME_FORMATTERS = ['first']
 
@@ -89,7 +90,7 @@ def welcome(message):
         welcome = cust_welcome
     else:
         welcome = sql.DEFAULT_WELCOME.format(first=message.from_user.first_name)
-    bot.reply_to(message, welcome, parse_mode='Markdown')
+    bot.reply_to(message, welcome, parse_mode='Markdown', reply_markup=keyboard)
 
 @bot.message_handler(commands=['setwelcome'])
 def setwelcome(message):
