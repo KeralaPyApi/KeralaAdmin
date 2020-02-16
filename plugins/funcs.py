@@ -4,6 +4,7 @@ from typing import Dict, List
 
 import emoji
 import keralabot
+from keralabot import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.welcome import escape_markdown
 from enum import IntEnum, unique
 
@@ -202,4 +203,25 @@ def get_welcome_type(msg):
         data_type = Types.VIDEO
 
     return text, data_type, content, buttons
+
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn.same_line and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn.name, url=btn.url))
+        else:
+            keyb.append([InlineKeyboardButton(btn.name, url=btn.url)])
+
+    return keyb
+
+
+def revert_buttons(buttons):
+    res = ""
+    for btn in buttons:
+        if btn.same_line:
+            res += "\n[{}](buttonurl://{}:same)".format(btn.name, btn.url)
+        else:
+            res += "\n[{}](buttonurl://{})".format(btn.name, btn.url)
+
+    return res
 
