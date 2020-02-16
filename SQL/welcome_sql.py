@@ -26,8 +26,26 @@ class Welcome(BASE):
     def __init__(self, chat_id):
         self.chat_id = chat_id
 
+class WelcomeButtons(BASE):
+    __tablename__ = "welcome_urls"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    chat_id = Column(String(14), primary_key=True)
+    name = Column(UnicodeText, nullable=False)
+    url = Column(UnicodeText, nullable=False)
+    same_line = Column(Boolean, default=False)
+
+    def __init__(self, chat_id, name, url, same_line=False):
+        self.chat_id = str(chat_id)
+        self.name = name
+        self.url = url
+        self.same_line = same_line
+
+
+
 Welcome.__table__.create(checkfirst=True)
+WelcomeButtons.__table__.create(checkfirst=True)
 INSERTION_LOCK = threading.RLock()
+WELC_BTN_LOCK = threading.RLock()
 
 def get_welc_pref(chat_id):
     welc = SESSION.query(Welcome).get(str(chat_id))
@@ -51,4 +69,21 @@ def set_custom_welcome(chat_id, custom_welcome, welcome_type):
 
         SESSION.add(welcome_settings)
 
+        with WELC_BTN_LOCK:
+            prev_buttons = SESSION.query(WelcomeButtons).filter(WelcomeButtons.chat_id == str(chat_id)).all()
+            for btn in prev_buttons:
+                SESSION.delete(btn)
+
+            for b_name, url, same_line in buttons:
+                button = WelcomeButtons(chat_id, b_name, url, same_line)
+                SESSION.add(button)
+
+
         SESSION.commit()
+
+def get_welc_buttons(chat_id):
+    try:
+        return SESSION.query(WelcomeButtons).filter(WelcomeButtons.chat_id == str(chat_id)).order_by(
+            WelcomeButtons.id).all()
+    finally:
+        SESSION.close()
