@@ -139,3 +139,53 @@ def button_markdown_parser(txt: str, entities: Dict[MessageEntity, str] = None, 
 
     return note_data, buttons
 
+
+def get_welcome_type(msg):
+    data_type = None
+    content = None
+    text = ""
+
+    args = msg.text.split(None, 1)  # use python's maxsplit to separate cmd and args
+
+    buttons = []
+    # determine what the contents of the filter are - text, image, sticker, etc
+    if len(args) >= 2:
+        offset = len(args[1]) - len(msg.text)  # set correct offset relative to command + notename
+        text, buttons = button_markdown_parser(args[1], entities=msg.parse_entities(), offset=offset)
+        if buttons:
+            data_type = Types.BUTTON_TEXT
+        else:
+            data_type = Types.TEXT
+
+    elif msg.reply_to_message and msg.reply_to_message.sticker:
+        content = msg.reply_to_message.sticker.file_id
+        text = msg.reply_to_message.text
+        data_type = Types.STICKER
+
+    elif msg.reply_to_message and msg.reply_to_message.document:
+        content = msg.reply_to_message.document.file_id
+        text = msg.reply_to_message.text
+        data_type = Types.DOCUMENT
+
+    elif msg.reply_to_message and msg.reply_to_message.photo:
+        content = msg.reply_to_message.photo[-1].file_id  # last elem = best quality
+        text = msg.reply_to_message.text
+        data_type = Types.PHOTO
+
+    elif msg.reply_to_message and msg.reply_to_message.audio:
+        content = msg.reply_to_message.audio.file_id
+        text = msg.reply_to_message.text
+        data_type = Types.AUDIO
+
+    elif msg.reply_to_message and msg.reply_to_message.voice:
+        content = msg.reply_to_message.voice.file_id
+        text = msg.reply_to_message.text
+        data_type = Types.VOICE
+
+    elif msg.reply_to_message and msg.reply_to_message.video:
+        content = msg.reply_to_message.video.file_id
+        text = msg.reply_to_message.text
+        data_type = Types.VIDEO
+
+    return text, data_type, content, buttons
+
