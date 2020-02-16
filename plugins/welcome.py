@@ -79,7 +79,7 @@ def welcome(message):
     #res = valid_format.format(first=markdown(first_name)) 
     cust_welcome = cust_welcome.replace('{name}', escape_markdown(first_name))
     cust_welcome = cust_welcome.replace('{fullname}', escape_markdown(full_name))
-    #cust_welcome = cust_welcome.replace('{mention}', (mention))
+    cust_welcome = cust_welcome.replace('{mention}', (mention))
     cust_welcome = cust_welcome.replace('{title}', escape_markdown(chat_title))
     if cust_welcome != True:
         welcome = cust_welcome
