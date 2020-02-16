@@ -72,7 +72,7 @@ def welcome(message):
     chat_title = message.chat.title
     first_name = message.new_chat_member.first_name
     full_name = "{} {}".format(message.new_chat_member.first_name, message.new_chat_member.last_name)
-    #mention = "[{}](http://t.me/user?id={})".format(message.new_chat_member.first_name, message.from_user.id)
+    mention = "[{}](http://t.me/user?id={})".format(message.new_chat_member.first_name, message.from_user.id)
     members = bot.get_chat_members_count(chat_id)
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
