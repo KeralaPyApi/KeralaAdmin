@@ -103,6 +103,10 @@ def setwelcome(message):
 @bot.message_handler(commands=['welcome']) #To see welcome format
 def seewelcome(message):
     chat_id = message.chat.id
-    cust_welcome = sql.get_welc_pref(chat_id)
-    bot.reply_to(message, cust_welcome, parse_mode='Markdown')
-    return
+    user_id = message.from_user.id
+    members = bot.get_chat_member(chat_id, user_id)
+    if members.status == "administrator" or members.status == "creator":
+        cust_welcome = sql.get_welc_pref(chat_id)
+        bot.reply_to(message, cust_welcome, parse_mode='Markdown')
+    else:
+        bot.delete_message(message.chat.id, message.message_id)
