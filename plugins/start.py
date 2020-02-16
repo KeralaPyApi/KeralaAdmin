@@ -29,14 +29,14 @@ def help_back():
     return help_back
 
 @bot.message_handler(commands=['start'])
-def start(message, args: List[str]):
+def start(message):
     if message.chat.type == "private":
-        if len(args) >= 1:
-            if args[0].lower() == "help":
-                callback_query(message)
-        else: 
-            bot.send_chat_action(message.chat.id, "typing")
-            bot.reply_to(message, "<b>Hi I am an Admin bot written using KeralaPyApi.</b>", parse_mode="HTML", reply_markup=markup())
+       # if len(args) >= 1:
+          #  if args[0].lower() == "help":
+         #       callback_query(message)
+       # else: 
+        bot.send_chat_action(message.chat.id, "typing")
+        bot.reply_to(message, "<b>Hi I am an Admin bot written using KeralaPyApi.</b>", parse_mode="HTML", reply_markup=markup())
     else:
         bot.send_chat_action(message.chat.id, "typing")
         bot.reply_to(message, "Hello, How are you")
