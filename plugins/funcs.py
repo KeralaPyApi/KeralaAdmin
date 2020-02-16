@@ -4,6 +4,7 @@ from typing import Dict, List
 
 import emoji
 import keralabot
+from plugins.welcome import escape_markdown
 
 MATCH_MD = re.compile(r'\*(.*?)\*|'
                       r'~(.*?)~|'
