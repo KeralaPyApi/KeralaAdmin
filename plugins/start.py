@@ -7,6 +7,7 @@ keralabot.logger.setLevel(logging.DEBUG) # Outputs debug messages to console.
 
 from config import *
 from typing import Optional, List
+ghelp = "\• /setwelcome \: For setting custom welcome for your group\n\• /welcome \: For seeing the welcome note\."
 
 def markup():
     markup = InlineKeyboardMarkup()
@@ -49,7 +50,7 @@ def callback_query(call):
     if call.data == "admin":
         bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "welcome":
-        bot.edit_message_text("Here is help for *Greetings* module\n\n__Admins only Commands__\n• /setwelcome : For setting custom welcome for your group\n• /welcome : For seeing the welcome note.", call.message.chat.id, call.message.message_id, reply_markup=help_back(), parse_mode="MarkdownV2")
+        bot.edit_message_text("Here is help for *Greetings* module\n\n__Admins only Commands__\n" + ghelp , call.message.chat.id, call.message.message_id, reply_markup=help_back(), parse_mode="MarkdownV2")
     if call.data == "translate":
         bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "misc":
