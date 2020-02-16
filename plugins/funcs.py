@@ -4,7 +4,7 @@ from typing import Dict, List
 
 import emoji
 import keralabot
-from keralabot import InlineKeyboardMarkup, InlineKeyboardButton
+from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.welcome import escape_markdown
 from enum import IntEnum, unique
 
