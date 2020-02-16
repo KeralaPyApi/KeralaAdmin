@@ -32,7 +32,7 @@ def help_back():
 def start(message, *args):
     args = List[str]
     if message.chat.type == "private":
-        if len(args) >= 1:
+        if args >= 1:
             if args[0].lower() == "help":
                 callback_query(message)
         else: 
