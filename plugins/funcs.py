@@ -5,7 +5,6 @@ from typing import Dict, List
 import emoji
 import keralabot
 from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
-from plugins.welcome import escape_markdown
 from enum import IntEnum, unique
 
 
@@ -33,6 +32,13 @@ MATCH_MD = re.compile(r'\*(.*?)\*|'
 LINK_REGEX = re.compile(r'(?<!\\)\[.+?\]\((.*?)\)')
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
+def escape_markdown(text):
+    text = text.replace('[', '\[')
+    text = text.replace('_', '\_')
+    text = text.replace('*', '\*')
+    text = text.replace('`', '\`')
+
+    return text
 
 def _selective_escape(to_parse: str) -> str:
     """
