@@ -49,7 +49,7 @@ def callback_query(call):
     if call.data == "admin":
         bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "welcome":
-        bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
+        bot.edit_message_text("Here is help for *Greetings* module\n\n*Admins only Commands*\n/setwelcome : For setting custom welcome for your group ", call.message.chat.id, call.message.message_id, reply_markup=help_back(), parse_mode="Markdown")
     if call.data == "translate":
         bot.edit_message_text("On beta mode now", call.message.chat.id, call.message.message_id, reply_markup=help_back())
     if call.data == "misc":
