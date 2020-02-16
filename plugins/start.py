@@ -29,7 +29,8 @@ def help_back():
     return help_back
 
 @bot.message_handler(commands=['start'])
-def start(message, args: List[str]):
+def start(message, List[str]):
+    args = List[str]
     if message.chat.type == "private":
         if len(args) >= 1:
             if args[0].lower() == "help":
