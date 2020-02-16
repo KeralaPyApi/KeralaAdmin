@@ -9,7 +9,7 @@ import SQL.welcome_sql as sql
 
 #VALID_WELCOME_FORMATTERS = ['first']
 
-def markdown(text):
+def escape_markdown(text):
     text = text.replace('[', '\[')
     text = text.replace('_', '\_')
     text = text.replace('*', '\*')
@@ -77,10 +77,10 @@ def welcome(message):
     cust_welcome = sql.get_welc_pref(chat_id)
     #valid_format = escape_invalid_curly_brackets(cust_welcome, VALID_WELCOME_FORMATTERS)
     #res = valid_format.format(first=markdown(first_name)) 
-    cust_welcome = cust_welcome.replace('{name}', markdown(first_name))
-    cust_welcome = cust_welcome.replace('{fullname}', markdown(full_name))
-    #cust_welcome = cust_welcome.replace('{mention}', markdown(mention))
-    cust_welcome = cust_welcome.replace('{title}', markdown(chat_title))
+    cust_welcome = cust_welcome.replace('{name}', escape_markdown(first_name))
+    cust_welcome = cust_welcome.replace('{fullname}', escape_markdown(full_name))
+    #cust_welcome = cust_welcome.replace('{mention}', (mention))
+    cust_welcome = cust_welcome.replace('{title}', escape_markdown(chat_title))
     if cust_welcome != True:
         welcome = cust_welcome
     else:
@@ -99,3 +99,10 @@ def setwelcome(message):
             custom_welcome = message.text[12:]
         sql.set_custom_welcome(chat_id, custom_welcome, sql.Types.TEXT)
         bot.reply_to(message, "Successfully set welcome message for *{}*".format(message.chat.title), parse_mode="Markdown")
+
+@bot.message_handler(commands=['welcome']) #To see welcome format
+def seewelcome(message):
+    chat_id = message.chat.id
+    cust_welcome = sql.get_welc_pref(chat_id)
+    bot.reply_to(message, cust_welcome, parse_mode='Markdown')
+    return
