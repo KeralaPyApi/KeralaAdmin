@@ -5,6 +5,20 @@ from typing import Dict, List
 import emoji
 import keralabot
 from plugins.welcome import escape_markdown
+from enum import IntEnum, unique
+
+
+@unique
+class Types(IntEnum):
+    TEXT = 0
+    BUTTON_TEXT = 1
+    STICKER = 2
+    DOCUMENT = 3
+    PHOTO = 4
+    AUDIO = 5
+    VOICE = 6
+    VIDEO = 7
+
 
 MATCH_MD = re.compile(r'\*(.*?)\*|'
                       r'~(.*?)~|'
