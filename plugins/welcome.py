@@ -84,9 +84,8 @@ def welcome(message):
     cust_welcome = cust_welcome.replace('{mention}', (mention))
     cust_welcome = cust_welcome.replace('{title}', escap_markdown(chat_title))
     buttons = sql.get_welc_buttons(chat_id)
-    keyboard = InlineKeyboardMarkup()
     keyb = build_keyboard(buttons)
-    keyboard.add(keyb)
+    keyboard = InlineKeyboardMarkup(keyb)
     if cust_welcome != True:
         welcome = cust_welcome
     else:
