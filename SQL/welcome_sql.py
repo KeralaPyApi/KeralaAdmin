@@ -56,7 +56,9 @@ def get_welc_pref(chat_id):
         # Welcome by default.
         return True, DEFAULT_WELCOME
 
-def set_custom_welcome(chat_id, custom_welcome, welcome_type):
+def set_custom_welcome(chat_id, custom_welcome, welcome_type, buttons=None):
+    if buttons is None:
+        buttons = []
 
     with INSERTION_LOCK:
         prev_welcome = SESSION.query(Welcome).filter(Welcome.chat_id == str(chat_id)).all()
