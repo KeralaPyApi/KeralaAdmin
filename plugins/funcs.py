@@ -579,7 +579,7 @@ def get_welcome_type(msg):
     # determine what the contents of the filter are - text, image, sticker, etc
     if len(args) >= 2:
         offset = len(args[1]) - len(msg.text)  # set correct offset relative to command + notename
-        text, buttons = button_markdown_parser(args[1], entities=msg.parse_entities(), offset=offset)
+        text, buttons = button_markdown_parser(args[1], entities=None, offset=offset)
         if buttons:
             data_type = Types.BUTTON_TEXT
         else:
