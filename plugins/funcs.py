@@ -474,7 +474,7 @@ def _calc_emoji_offset(to_calc) -> int:
     return sum(len(e.group(0).encode('utf-16-le')) // 2 - 1 for e in emoticons)
 
 
-def markdown_parser(txt: str, entities: Dict[MessageEntity, str] = None, offset: int = 0) -> str:
+def markdown_parser(txt: str, entities: Dict[MessageEntity, str] = msg.entities(), offset: int = 0) -> str:
     """
     Parse a string, escaping all invalid markdown entities.
 
