@@ -6,7 +6,7 @@ import emoji
 import keralabot
 from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from enum import IntEnum, unique
-from keralabot.button.parse_button import button_markdown_parser
+from keralabot.parse_button import button_markdown_parser
 
 
 @unique
