@@ -6,9 +6,10 @@ import logging
 from config import *
 from database import *
 import SQL.welcome_sql as sql
-from plugins.funcs import get_welcome_type, build_keyboard
+from plugins.funcs import get_welcome_type
 from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from keralabot.button.base import escape_markdown
+from keralabot.button.parse_button import build_keyboard
 
 #VALID_WELCOME_FORMATTERS = ['first']
 
