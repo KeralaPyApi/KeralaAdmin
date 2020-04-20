@@ -8,8 +8,8 @@ from database import *
 import SQL.welcome_sql as sql
 from plugins.funcs import get_welcome_type
 from keralabot.types import InlineKeyboardMarkup, InlineKeyboardButton
-from keralabot.button.base import escape_markdown
-from keralabot.button.parse_button import build_keyboard
+from keralabot.buttonbase import escape_markdown
+from keralabot.parse_button import build_keyboard
 
 #VALID_WELCOME_FORMATTERS = ['first']
 
