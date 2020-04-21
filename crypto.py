@@ -1,3 +1,3 @@
-import new
+import bot
 
-new.new("Helllifghs")
+bot.new("Token")
