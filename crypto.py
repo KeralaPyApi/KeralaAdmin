@@ -1,3 +1,3 @@
-import bot
+import BotClient
 
-bot.new("Token")
+BotClient.new("Token")
