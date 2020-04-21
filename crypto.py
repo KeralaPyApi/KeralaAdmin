@@ -1,3 +1,3 @@
-import KeralaBots
+import new
 
-KeralaBots.new("Helllifghs")
+new.new("Helllifghs")
