@@ -1,3 +1,3 @@
 import BotClient
 
-BotClient.new("Token", "send_message")
+BotClient.new("Token", method="send_message")
