@@ -4,4 +4,4 @@ psycopg2-binary
 feedparser
 googletrans
 emoji
-https://github.com/KeralaBots/KeralaBots/archive/master.zip
+https://github.com/KeralaBots/BotClient/archive/master.zip
